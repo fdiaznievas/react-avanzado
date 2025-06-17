@@ -18,6 +18,29 @@ app.get('/api/saludo', (req, res) => {
   res.json({ mensaje: 'Hola desde el backend!' });
 });
 
+app.get('/api/personas', (req, res) => {
+    // Aquí deberías implementar la lógica para obtener las personas desde la base de datos
+    res.json([
+        { id: 1, nombre: 'Juan', edad: 30 },
+        { id: 2, nombre: 'Ana', edad: 25 },
+        { id: 3, nombre: 'Luis', edad: 28 }
+    ]);
+});
+
+app.post('/api/personas', (req, res) => {
+    // Aquí deberías implementar la lógica para crear una nueva persona en la base de datos
+    const nuevaPersona = req.body;
+    // Simulación de creación exitosa
+    res.status(201).json({ mensaje: 'Persona creada exitosamente', persona: nuevaPersona });
+});
+
+app.get('/api/persona/:id', (req, res) => {
+    const id = req.params.id;
+    // Aquí deberías implementar la lógica para obtener una persona por ID desde la base de datos
+    res.json({ id, nombre: 'Juan', edad: 30 });
+});
+
+
 app.listen(PORT, ()=>{
     console.log(`El servidor está escuchando en el puerto ${PORT}`)
 })
