@@ -14,6 +14,10 @@ app.use(express.static('../frontend'));
 // sequelize.sync({force: true});
 sequelize.sync();
 
+app.get('/api/saludo', (req, res) => {
+  res.json({ mensaje: 'Hola desde el backend!' });
+});
+
 app.listen(PORT, ()=>{
     console.log(`El servidor está escuchando en el puerto ${PORT}`)
 })

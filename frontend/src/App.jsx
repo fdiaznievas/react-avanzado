@@ -1,9 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react';
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css"
 import "./App.css";
 
 function App() {
+  const [mensaje, setMensaje] = useState('');
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/saludo')
+      .then(res => res.json())
+      .then(data => setMensaje(data.mensaje))
+      .catch(err => console.error('Error al conectar con backend:', err));
+  }, []);
 
   return (
     <>
@@ -22,37 +30,9 @@ function App() {
           </div>
         </div>
       </nav>
-      <div className="main container-fluid">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </table>
+      <div>
+        <h1>Frontend</h1>
+        <p>Mensaje desde el backend: {mensaje}</p>
       </div>
     </>
   )
