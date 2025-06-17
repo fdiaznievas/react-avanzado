@@ -5,13 +5,29 @@ import "./App.css";
 
 function App() {
   const [mensaje, setMensaje] = useState('');
+  const [personas, setPersona] = useState([]);
+  const [nuevaPersona, setNuevaPersona] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/saludo')
+    fetch('http://localhost:3000/api/personas') 
       .then(res => res.json())
-      .then(data => setMensaje(data.mensaje))
+      .then(data => setPersona(data))
       .catch(err => console.error('Error al conectar con backend:', err));
   }, []);
+
+    const agregarPersona = () => {
+    fetch('http://localhost:3000/api/personas', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nombre: nuevaPersona })
+    })
+      .then(res => res.json())
+      .then(persona => {
+        setPersona([...personas, persona]);
+        setNuevaPersona('');
+      });
+  };
+
 
   return (
     <>
@@ -31,8 +47,16 @@ function App() {
         </div>
       </nav>
       <div>
-        <h1>Frontend</h1>
-        <p>Mensaje desde el backend: {mensaje}</p>
+      <h1>Clientes</h1>
+        <ul>
+          {personas && personas.map(t => <li key={t.id}>{t.nombre} - {t.edad} años</li>)}
+        </ul>
+        <input
+          value={nuevaPersona}
+          onChange={e => setNuevaPersona(e.target.value)}
+          placeholder="Nueva persona"
+        />
+        <button onClick={agregarPersona}>Agregar</button>
       </div>
     </>
   )
