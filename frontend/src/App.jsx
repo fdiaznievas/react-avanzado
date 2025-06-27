@@ -31,24 +31,24 @@ function App() {
 
   return (
     <>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark"> 
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">DDS</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+      <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark"> 
+        <div className="container-fluid">
+          <a className="navbar-brand" href="#">DDS</a>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-link">1</li>
-              <li class="nav-link">2</li>
-              <li class="nav-link">3</li>
+          <div className="collapse navbar-collapse" id="navbarText">
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-link">1</li>
+              <li className="nav-link">2</li>
+              <li className="nav-link">3</li>
             </ul>
           </div>
         </div>
       </nav>
-      <div class="container mt-5">
+      <div className="container mt-5">
         <h1>Clientes</h1>
-        <table class="table table-striped">
+        <table className="table table-striped">
           <thead>
             <tr>
               <th scope="col">Nombre</th>
@@ -57,7 +57,7 @@ function App() {
           </thead>
           <tbody>
             {personas && personas.map(t => 
-            <tr key={t.id}> <td>{t.nombre}</td> <td>{t.edad} años</td> </tr>)}
+            <tr key={t.id}><td>{t.nombre}</td><td>{t.edad} años</td></tr>)}
             {personas.length === 0 && <tr><td colSpan="2">No hay personas registradas</td></tr>}
           </tbody>
         </table>

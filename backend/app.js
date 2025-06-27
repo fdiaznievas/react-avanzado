@@ -1,10 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import sequelize from './db.js';
+import personasController from './controllers/personas.controller.js';
 
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3200;
 
 app.use(express.json());
 app.use(cors());
@@ -20,11 +21,7 @@ app.get('/api/saludo', (req, res) => {
 
 app.get('/api/personas', (req, res) => {
     // Aquí deberías implementar la lógica para obtener las personas desde la base de datos
-    res.json([
-        { id: 1, nombre: 'Juan', edad: 30 },
-        { id: 2, nombre: 'Ana', edad: 25 },
-        { id: 3, nombre: 'Luis', edad: 28 }
-    ]);
+    return personasController.getAllPersonas(req, res);
 });
 
 app.post('/api/personas', (req, res) => {
